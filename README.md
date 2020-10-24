@@ -3,32 +3,32 @@
 React JS Fundamentals Course
 ### 201022
 nodejs, npm, npx 정리하기
-> cd documents
+> cd documents  
 npx create-react-app my-app
 `VSC에서 오픈할 때`
-code my-app 
+code my-app  
 npm start
 
-> git init
-git remote add origin github링크
-git add .
-git commit -m "commit message"
+> git init  
+git remote add origin github링크  
+git add .  
+git commit -m "commit message"  
 git push origin master / main
 
-나의 모든 react application을 div 사이에 집어넣는다
-React는 app.js component를 ElementById 내부에 집어넣으려고 한다.
+나의 모든 react application을 div 사이에 집어넣는다  
+React는 app.js component를 ElementById 내부에 집어넣으려고 한다.  
 그래서 `index.html`에서 `id`를 바꾸면 에러 발생함.
 
-이래서 React가 빠르다. 소스코드에 처음부터 HTML을 넣지 않고, HTML에서 HTML을 추가하거나 제거.
+이래서 React가 빠르다. 소스코드에 처음부터 HTML을 넣지 않고, HTML에서 HTML을 추가하거나 제거.  
 `Virtual DOM`
 <br>
 ### 201023
 #### Component
-![Component](https://images.velog.io/images/gouz7514/post/fcca1b6e-cc8f-4020-a845-b5173d07ec03/image.png)
+![Component](https://images.velog.io/images/gouz7514/post/fcca1b6e-cc8f-4020-a845-b5173d07ec03/image.png)  
 여기서 `<React.StritMode> ~~` 부분이 `Component`
-React는 `Component`와 함께 동작한다.
-`Component`는 HTML을 반환하는 함수
-이렇게 JS와 HTML 사이의 조합을 `JSX`라고 부른다.
+React는 `Component`와 함께 동작한다.  
+`Component`는 HTML을 반환하는 함수  
+이렇게 JS와 HTML 사이의 조합을 `JSX`라고 부른다.  
 
 React는 `Component`를 가져와서 브라우저가 이해할 수 있는 평범한 HTML로 만듦.  
 
@@ -60,7 +60,7 @@ ReactDOM.render(
 #### Reusable Component (JSX + Prop)  
 Reusable Component  
 Props 만들고 react magic에서 react는 우리가 전달한 props를 가져감  
-children component로 정보를 보내면 react는 이 속성들을 가져다가 function에 argument로 넣음
+children component로 정보를 보내면 react는 이 속성들을 가져다가 function에 argument로 넣음  
 `props.fav` == `{fav}`  
 
 ### 201024  
