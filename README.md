@@ -133,3 +133,36 @@ function App() {
 `npm i prop-types` : 내가 전달받은 props가 내가 원하는 props인지 확인  
 꼭 ! `proptypes`로 선언되어야 함  
 [React - PropTypes](https://ko.reactjs.org/docs/typechecking-with-proptypes.html)
+
+### 201026  
+#### Class Components and State  
+`state` : 동적 데이터와 함께 작업할 때 만들어짐. 변하는 데이터, 존재하지 않는 데이터  
+
+React는 자동적으로 모든 `class component`의 `render method`를 실행하고자 함  
+Why `class component`? : `state`  
+`state`에 바꾸고 싶은 data를 넣는다.  
+여기서 문제는 App에서 data를 어떻게 바꿀 것인지  
+
+```
+class App extends React.Component {
+  state = {
+    count  : 0
+  }
+  add = () => {
+    console.log("add");
+  };
+  minus = () => {
+    console.log("minus");
+  };
+  render() {
+    return <div>
+      <h1>The number is {this.state.count}</h1>
+      <button onClick={this.add}>Add</button>
+      <button onClick={this.minus}>Minus</button>
+      </div>
+  }
+}
+```  
+
+`state` 상태 변경할 때 React는 render function을 호출해서 바꿔주길 원한다.  
+**`setState`를 호출하면 react는 `state`를 refresh하고 render function도 호출함**  
