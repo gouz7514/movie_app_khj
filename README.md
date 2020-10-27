@@ -166,3 +166,15 @@ class App extends React.Component {
 
 `state` 상태 변경할 때 React는 render function을 호출해서 바꿔주길 원한다.  
 **`setState`를 호출하면 react는 `state`를 refresh하고 render function도 호출함**  
+
+### 201027  
+#### Life Cycle Method  
+`Mounting`  
+Component가 website에 갈 때 Constructor를 호출  
+이 후 Component가 render 할 때 componentDidMount  
+`Updating`  
+render -> componentDidUpdate  
+`Unmounting`  
+componentWillUnmount : component 사라질 때   
+
+이론적으로 우리가 할 일은 componentDidMount에서 data를 fetch하는 것  
