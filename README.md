@@ -178,3 +178,52 @@ render -> componentDidUpdate
 componentWillUnmount : component 사라질 때   
 
 이론적으로 우리가 할 일은 componentDidMount에서 data를 fetch하는 것  
+
+### 201029  
+#### Fetch  
+일반적으로 `fetch`를 통해 data를 받아오지만 `Axios` 도 있음.  
+`axios` : fetch 위에 있는 작은 레이어  
+`axios.get`은 속도가 빠르진 않아서 JS에게 `componentDidMount`끝날 때까지 시간이 걸릴 수 있다고 알려줘야 함  
+`async`, `await` axios 끝날 때까지 기다렸다가 계속해  
+
+`setState`를 통해 state에 movies 저장  
+```
+getMovies = async () => {
+    const {data : {data : {movies}}} = await axios.get("https://yts-proxy.nomadcoders1.now.sh/list_movies.json");
+    this.setState({movies, isLoading:false});
+}
+
+componentDidMount() {
+    this.getMovies();
+}
+```
+
+#### Movie.js 만들기  
+Component가 state를 필요로 하지 않으면 class 될 필요 없음  
+```
+import React from "react";
+import PropTypes from "prop-types";
+import "./Movie.css";
+
+function Movie({id, year, title, summary, poster}) {
+    return (<div class="movie">
+        <img src={poster} alt={title} title={title} />
+        <div class="movie__data">
+            <h3 class="movie__title">{title}</h3>
+            <h5 class="movie__year">{year}</h5>
+            <p class="movie__summary">{summary}</p>
+        </div>
+        
+    </div>)
+}
+
+Movie.propTypes = {
+    id : PropTypes.number.isRequired,
+    title : PropTypes.string.isRequired,
+    summary : PropTypes.string.isRequired,
+    poster : PropTypes.string.isRequired,
+    year : PropTypes.number.isRequired,
+}
+
+export default Movie;
+```
