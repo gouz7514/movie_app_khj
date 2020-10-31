@@ -227,3 +227,37 @@ Movie.propTypes = {
 
 export default Movie;
 ```
+
+### 201031  
+`Invalid DOM property error 'class'` : JSX 때문에 발생하는 에러.  
+`App.js` 에서 `class` 선언 부분이 자바스크립트의 class랑 충돌함  
+
+`map` 함수는 요소와 index를 동시에 제공. 이 index를 key로 사용해서 오류 없앨 수 있음.  
+```
+<ul className="genres">
+{genres.map((genre, index) => <li key={index} className="genres__genre">{genre}</li>)}
+</ul>
+```
+#### Deploying to Github Pages  
+`npm i gh-pages`  
+`https://gouz7514.github.io/movie_app_khj`  
+
+**• package.json**  
+Deploy를 위해 `package.json`에서 `homepage` 설정 필수  
+그 다음 `npm run build` 해서 만들어진 build 폴더를 gh-pages에 업로드  
+![npm run build 결과물](https://images.velog.io/images/gouz7514/post/b414f7b4-6bcc-4837-97c5-4ce748e4ec49/%EC%BA%A1%EC%B2%98.PNG)
+```
+ "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
+  }
+```
+`deploy`를 호출할 때마다, `predeploy`를 호출,  
+`predeploy`는 `npm run build`,  
+`build`는 `build script`를 호출,  
+`script`는 나에게 `build` 폴더를 줌  
+완료되면 `predeploy`는 끝  
+
+`deploy`는 `gh-pages`를 호출하고 `build` 폴더를 업로드.  
