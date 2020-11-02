@@ -261,3 +261,83 @@ Deploy를 위해 `package.json`에서 `homepage` 설정 필수
 완료되면 `predeploy`는 끝  
 
 `deploy`는 `gh-pages`를 호출하고 `build` 폴더를 업로드.  
+
+### 201102  
+#### Build Router  
+`react-router dom` : 네비게이션 만들어주는 패키지  
+router 위해 `components`와 `routes` 폴더로 나눔  
+
+`App.js`에서 다음과 같이 라우터를 만들 수 있다.  
+```
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routes/About";
+import Home from "./routes/Home";
+
+function App() {
+  return <HashRouter>
+    <Route path="/" component={Home} />
+    <Route path="/about" component={About}/>
+  </HashRouter>
+}
+
+export default App;
+```
+하지만 이렇게 하면 2개의 컴포넌트가 동시에 렌더링되서 겹쳐보임.  
+
+리액트 라우터는 기본적으로 url을 가져와서 라우터에 있는 모든 것과 비교한 뒤 매치가 되는 것을 보여줌.  
+![home과 home/introduction 겹침](https://images.velog.io/images/gouz7514/post/5976b518-b317-454d-9a49-5e97a812bb9a/%EC%BA%A1%EC%B2%982.PNG)
+`/home`과 `/home/introduction`이 겹침  
+
+이걸 해결하기 위해 `exact={true}`를 사용  
+
+#### Build Navigation  
+`Navigation.js` 생성  
+but, 매번 누를 때마다 로딩됨  
+
+이걸 해결하기 위해 `Link` 사용  
+`Navigation.js`  
+```
+import React from "react";
+import { Link } from "react-router-dom";
+
+function Navigation() {
+    return (
+    <div>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+    </div>
+    );
+}
+
+export default Navigation;
+```
+**`Link`는 반드시 `Router` 안에!!**  
+
+#### Sharing Props Between Routes  
+라우터에 있는 모든 라우트들은 `props`를 가짐  
+`App.js`에서 route 선언하고 `Movie.js`에서 보내면 `Detail.js`에서 props 받음  
+
+But, 바로 `movie-detail` 페이지로 갈 경우 state가 undefined.  
+이를 해결하기 위해 class 컴포넌트로 바꿈  
+
+`Detail.js`  
+```
+import React from "react";
+
+class Detail extends React.Component {
+    componentDidMount() {
+        const {location, history} = this.props;
+        if (location.state === undefined) {
+            history.push("./");
+        }
+    }
+    render() {
+        return <span>Hello Detail</span>
+    }
+}
+
+export default Detail;
+```
+state가 undefined이면 Home 경로로 리다이렉트.  
+경로 바꿔줄 수도 있음.  
