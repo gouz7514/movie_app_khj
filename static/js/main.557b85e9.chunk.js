@@ -1,2 +1,0 @@
-(this.webpackJsonpmovie_app_khj=this.webpackJsonpmovie_app_khj||[]).push([[0],{3:function(e,t,n){e.exports=n(8)},8:function(e,t,n){"use strict";n.r(t);var a=n(0),o=n.n(a),r=n(2);var p=function(){return o.a.createElement("span",null,"something")};n.n(r).a.render(o.a.createElement(o.a.StrictMode,null,o.a.createElement(p,null)),document.getElementById("potato"))}},[[3,1,2]]]);
-//# sourceMappingURL=main.557b85e9.chunk.js.map
